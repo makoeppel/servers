@@ -11,9 +11,9 @@ services:
       - CLI_ARGS= #optional
       - DUPLICATI__WEBSERVICE_PASSWORD=
     volumes:
-      - config:/config
+      - ./config:/config
       - /mnt/backup:/backups
-      - source:/source
+      - ./source:/source
     ports:
       - 8200:8200
     restart: unless-stopped

@@ -40,11 +40,9 @@ prompt_values() {
   echo
   [[ -z "$PASSWORD" ]] && { echo "Password is required."; exit 1; }
 
-  read -rp "Domain / Workgroup: " DOMAIN
+  read -rp "Domain / Workgroup (e.g. server/share): " DOMAIN
   [[ -z "$DOMAIN" ]] && { echo "Domain is required."; exit 1; }
 
-  read -rp "SMB version [3.0]: " CIFS_VERS
-  CIFS_VERS="${CIFS_VERS:-3.0}"
 }
 
 write_credentials() {
@@ -83,7 +81,7 @@ After=network-online.target
 What=$CIFS_REMOTE
 Where=$MOUNTPOINT
 Type=cifs
-Options=credentials=/etc/cifs-credentials-import,_netdev,vers=$CIFS_VERS,iocharset=utf8,nofail
+Options=credentials=/etc/cifs-credentials-import
 
 [Install]
 WantedBy=multi-user.target

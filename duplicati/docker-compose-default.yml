@@ -4,8 +4,8 @@ services:
     image: lscr.io/linuxserver/duplicati:latest
     container_name: duplicati
     environment:
-      - PUID=1000
-      - PGID=1000
+      - PUID=0
+      - PGID=0
       - TZ=Etc/UTC
       - SETTINGS_ENCRYPTION_KEY=
       - CLI_ARGS= #optional
@@ -13,6 +13,7 @@ services:
     volumes:
       - ./config:/config
       - /mnt/backup:/backups
+      - /mnt:/server-mnt
       - ./source:/source
     ports:
       - 8200:8200
